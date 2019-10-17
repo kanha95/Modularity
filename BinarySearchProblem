@@ -1,0 +1,52 @@
+package codeup;
+
+
+import java.util.*;
+
+// Given number n, player A chooses a k and takes it, then player B takes 1/10th of remaining. What is min k for A to have atleast n/2
+
+public class Solution {
+    
+    static boolean func(long n, long k){
+        long sum1=0, sum2=0;
+        
+        while(n>k){
+        sum1+=k;
+        n=n-k;
+        sum2+=n/10;
+        n=n-n/10;
+        }
+        
+        sum1+=n;
+        if(sum1>=sum2) return true;
+        else return false;
+        
+        
+    }
+    
+    public static void main(String args[] ) throws Exception {
+       Scanner sc = new Scanner(System.in);
+       
+       long n = sc.nextLong();
+       
+       long l=1, r=n, ans=-1;
+       
+       while(l<=r){
+           long mid = l+(r-l)/2;
+           if(func(n, mid)){
+               ans = mid;
+               r=mid-1;
+           }
+           else{
+               l=mid+1;
+           }
+           
+           
+           
+       }
+       
+       System.out.println(ans);
+
+    }
+    
+}
