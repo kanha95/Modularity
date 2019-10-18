@@ -1,0 +1,43 @@
+package codeup;
+
+
+import java.util.*;
+
+
+public class Solution {
+    
+	static Stack<Integer> al = new Stack<>();
+	static boolean[] visited = new boolean[3];
+	
+ static void gen(int[] ar) {
+	 if(al.size()==ar.length) {
+		 for(Integer i:al) {
+			 System.out.print(ar[i]+" ");
+		 }System.out.println("");
+	 }
+	 else {
+		 for(int i=0;i<3;i++) {
+			 if(visited[i]) continue;
+			 visited[i] = true;
+			 al.push(i);
+		     gen(ar);
+		     
+		     visited[i] = false;
+		     al.pop();
+		 }
+		 
+		 
+	 }
+ }
+	
+    public static void main(String args[] ) throws Exception {
+       Scanner sc = new Scanner(System.in);
+       
+       int[] ar = {2,3,1};
+       
+       gen(ar);
+    }
+    
+}
+
+// Generate all possible permutations of {2,3,1}....
